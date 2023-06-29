@@ -10,7 +10,7 @@ class AForm
 {
     public:
 		AForm(void);
-		AForm(const std::string name, int signGrade, int execGrade);
+		AForm(const std::string name,const int & signGrade,const int & execGrade);
 		AForm(const AForm &src);
 		AForm & operator=(const AForm &src);
 		virtual ~AForm(void);
@@ -32,14 +32,14 @@ class AForm
 				virtual const char* what() const throw();
 		};
 
-		virtual bool execute(Bureaucrat &executor) const = 0;
+		virtual void execute(Bureaucrat const &executor) const = 0;
 		bool beSigned(Bureaucrat &employe);
 
     private:
         const std::string	_name;
-		int					_signGrade;
-		int					_execGrade;	
-		 bool				_signed;	
+		const int					_signGrade;
+		const int					_execGrade;	
+		bool				_signed;	
 };
 
 std::ostream & operator<<(std::ostream &stream, const AForm &src);

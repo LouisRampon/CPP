@@ -13,7 +13,7 @@ class ShrubberyCreationForm : public AForm
 		virtual ~ShrubberyCreationForm(void);
 
 		std::string getTarget(void) const;
-		bool execute(Bureaucrat &executor) const;
+		void execute(Bureaucrat const &executor) const;
 
 	private:
 		std::string _target;

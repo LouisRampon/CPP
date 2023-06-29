@@ -9,15 +9,6 @@ bool AForm::beSigned(Bureaucrat &employe)
 	return (_signed);
 }
 
-// void AForm::execute(Bureaucrat &executor) const
-// {
-//     if ( executor.getGrade() > getexecGrade() )
-//       throw AForm::GradeTooLowException();
-//     else if (!getsigned())
-//       throw AForm::FormNotSigned();
-    
-// }
-
 std::ostream & operator<<(std::ostream &stream, const AForm &src)
 {
 	stream << src.getName() << ", is a form , grade to be sign is " 
@@ -29,32 +20,25 @@ std::ostream & operator<<(std::ostream &stream, const AForm &src)
 
 // constructor && destructor //
 
-AForm::AForm(void) : _name("unamed"),_signGrade(0), _execGrade(0), _signed(0)
-{}
-
-AForm::AForm(const std::string name, int signGrade, int execGrade) : _name(name)
-{
-    //std::cout << "Name and Grade Constructor called" << std::endl;
+AForm::AForm(const std::string name,const int & signGrade,const int & execGrade) :_name(name),
+                                                                                _signGrade(signGrade),
+                                                                                _execGrade(execGrade),
+                                                                                _signed(false) {
     if (signGrade > 150 || execGrade > 150)
         throw GradeTooLowException();
     if (signGrade < 1 || execGrade < 1)
         throw GradeTooHighException();
-    _signed = false;
-    _signGrade = signGrade;
-    _execGrade = execGrade;
 }
 
-AForm::AForm(const AForm &src) : _name(src._name)
-{
-   // std::cout << "Copy Constructor called" << std::endl;
-    *this = src;
-}
+AForm::AForm(const AForm &src) :   _name(src._name),
+                                _signGrade(src._signGrade),
+                                _execGrade(src._execGrade),
+                                _signed(src._signed)
+{}
 
 AForm &AForm::operator=(const AForm &src)
 {
-    //std::cout << "Copy assignment orepator called" << std::endl;
-    _signGrade = src.getsignGrade();
-	_execGrade = src.getexecGrade();
+    _signed = src.getsigned();
     return (*this);
 }
 

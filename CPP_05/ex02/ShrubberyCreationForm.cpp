@@ -21,36 +21,35 @@ std::string ShrubberyCreationForm::getTarget(void) const
 	return(_target);
 }
 
-bool ShrubberyCreationForm::execute(Bureaucrat &executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
     if ( executor.getGrade() > getexecGrade() )
-        return (false);
+        throw GradeTooLowException();
 
-    std::ofstream file("_shrubbery");
-    file << "                      ___" << std::endl;
-    file << "                _,-'\"\"   \"\"\"\"`--." << std::endl;
-    file << "             ,-'          __,,-- \\" << std::endl;
-    file << "           ,\'    __,--\"\"\"\"dF      )" << std::endl;
-    file << "          /   .-\"Hb_,--\"\"dF      /" << std::endl;
-    file << "        ,\'       _Hb ___dF\"-._,-'" << std::endl;
-    file << "      ,'      _,-\"\"\"\"   \"\"--..__" << std::endl;
-    file << "     (     ,-'                  `." << std::endl;
-    file << "      `._,'     _   _             ;" << std::endl;
-    file << "       ,'     ,' `-'Hb-.___..._,-'" << std::endl;
-    file << "       \\    ,'\"Hb.-\'HH`-.dHF\"" << std::endl;
-    file << "        `--\'   \"Hb  HH  dF\"" << std::endl;
-    file << "                \"Hb HH dF" << std::endl;
-    file << "                 \"HbHHdF" << std::endl;
-    file << "                  |HHHF" << std::endl;
-    file << "                  |HHH|" << std::endl;
-    file << "                  |HHH|" << std::endl;
-    file << "                  |HHH|" << std::endl;
-    file << "                  |HHH|" << std::endl;
-    file << "                  dHHHb" << std::endl;
-    file << "                .dFd|bHb.               o" << std::endl;
-    file << "      o       .dHFdH|HbTHb.          o /" << std::endl;
-    file << "\\  Y  |  \\__,dHHFdHH|HHhoHHb.__Krogg  Y" << std::endl;
-    file << "##########################################" << std::endl;
+    std::ofstream file((_target + "_shrubbery").c_str());
+    file << "                      ___" << std::endl
+    << "                _,-'\"\"   \"\"\"\"`--." << std::endl
+    << "             ,-'          __,,-- \\" << std::endl
+    << "           ,\'    __,--\"\"\"\"dF      )" << std::endl
+    << "          /   .-\"Hb_,--\"\"dF      /" << std::endl
+    << "        ,\'       _Hb ___dF\"-._,-'" << std::endl
+    << "      ,'      _,-\"\"\"\"   \"\"--..__" << std::endl
+    << "     (     ,-'                  `." << std::endl
+    << "      `._,'     _   _             ;" << std::endl
+    << "       ,'     ,' `-'Hb-.___..._,-'" << std::endl
+    << "       \\    ,'\"Hb.-\'HH`-.dHF\"" << std::endl
+    << "        `--\'   \"Hb  HH  dF\"" << std::endl
+    << "                \"Hb HH dF" << std::endl
+    << "                 \"HbHHdF" << std::endl
+    << "                  |HHHF" << std::endl
+    << "                  |HHH|" << std::endl
+    << "                  |HHH|" << std::endl
+    << "                  |HHH|" << std::endl
+    << "                  |HHH|" << std::endl
+    << "                  dHHHb" << std::endl
+    << "                .dFd|bHb.               o" << std::endl
+    << "      o       .dHFdH|HbTHb.          o /" << std::endl
+    << "\\  Y  |  \\__,dHHFdHH|HHhoHHb.__Krogg  Y" << std::endl
+    << "##########################################" << std::endl;
     file.close();
-    return (true);
 }		

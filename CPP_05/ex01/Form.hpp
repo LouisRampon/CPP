@@ -9,7 +9,7 @@ class Bureaucrat;
 class Form
 {
     public:
-		Form(const std::string name, int signGrade, int execGrade);
+		Form(const std::string name, const int & signGrade,const int & execGrade);
 		Form(const Form &src);
 		Form & operator=(const Form &src);
 		~Form(void);
@@ -31,13 +31,13 @@ class Form
 				virtual const char* what() const throw();
 		};
 
-		bool beSigned(Bureaucrat &employe);
+		bool beSigned(Bureaucrat const &employe);
 
     private:
         const std::string	_name;
         bool				_signed;
-		int					_signGrade;
-		int					_execGrade;		
+		const int					_signGrade;
+		const int					_execGrade;		
 };
 
 std::ostream & operator<<(std::ostream &stream, const Form &src);

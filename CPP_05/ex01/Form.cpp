@@ -1,12 +1,12 @@
 #include "Form.hpp"
 
-bool Form::beSigned(Bureaucrat &employe)
+bool Form::beSigned(Bureaucrat const &employe)
 {
 	if (employe.getGrade() <= _signGrade)
 		_signed = true;
 	else
 		throw GradeTooLowException();
-	return (_signed);
+    return (1);
 }
 
 std::ostream & operator<<(std::ostream &stream, const Form &src)
@@ -20,29 +20,25 @@ std::ostream & operator<<(std::ostream &stream, const Form &src)
 
 // constructor && destructor //
 
-Form::Form(const std::string name, int signGrade, int execGrade) : _name(name)
-{
-    //std::cout << "Name and Grade Constructor called" << std::endl;
+Form::Form(const std::string name,const int & signGrade,const int & execGrade) :_name(name),
+                                                                                _signed(0),
+                                                                                _signGrade(signGrade),
+                                                                                _execGrade(execGrade) {
     if (signGrade > 150 || execGrade > 150)
         throw GradeTooLowException();
     if (signGrade < 1 || execGrade < 1)
         throw GradeTooHighException();
-	_signed = false;
-    _signGrade = signGrade;
-    _execGrade = execGrade;
 }
 
-Form::Form(const Form &src) : _name(src._name)
-{
-   // std::cout << "Copy Constructor called" << std::endl;
-    *this = src;
-}
+Form::Form(const Form &src) :   _name(src._name),
+                                _signed(0),
+                                _signGrade(src._signGrade),
+                                _execGrade(src._execGrade)
+{}
 
 Form &Form::operator=(const Form &src)
 {
-    //std::cout << "Copy assignment orepator called" << std::endl;
-    _signGrade = src.getsignGrade();
-	_execGrade = src.getexecGrade();
+    _signed = src._signed;
     return (*this);
 }
 
@@ -63,7 +59,7 @@ const char* Form::GradeTooLowException::what(void) const throw()
 	return ("EXCEPTION : Bureaucrat grade is too low to sign");
 }
 
-// Setter && Getter //
+// Accessorr //
 
 int Form::getsignGrade(void) const
 {

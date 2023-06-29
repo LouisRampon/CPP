@@ -6,22 +6,21 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src
 
 PresidentialPardonForm & PresidentialPardonForm::operator=(const PresidentialPardonForm &src)
 {
-	_target = src.getTarget();
+  _target = src.getTarget();
 	return (*this);
 }
 
 PresidentialPardonForm::~PresidentialPardonForm(void)
 {}
 
-std::string PresidentialPardonForm::getTarget(void) const
+const std::string PresidentialPardonForm::getTarget(void) const
 {
 	return(_target);
 }
 
-bool PresidentialPardonForm::execute(Bureaucrat &executor) const
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
     if ( executor.getGrade() > getexecGrade() )
-      return (false);
+      throw GradeTooLowException();
     std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
-    return (true);
 }		

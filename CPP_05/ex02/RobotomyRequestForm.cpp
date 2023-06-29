@@ -21,11 +21,10 @@ std::string RobotomyRequestForm::getTarget(void) const
 	return(_target);
 }
 
-bool RobotomyRequestForm::execute(Bureaucrat &executor) const	
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const	
 {
     if ( executor.getGrade() > getexecGrade() )
-        return (false);
-
+        throw GradeTooLowException();
     srand(std::time(NULL));
     
     int random = rand();
@@ -34,5 +33,4 @@ bool RobotomyRequestForm::execute(Bureaucrat &executor) const
             std::cout << _target << " has been robotomized!" << std::endl;
         else
             std::cout << _target << " Robotomy failed!" << std::endl;
-    return(true);
 }

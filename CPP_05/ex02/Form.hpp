@@ -32,7 +32,8 @@ class AForm
 				virtual const char* what() const throw();
 		};
 
-		virtual bool beSigned(Bureaucrat &employe) = 0;
+		virtual bool execute(Bureaucrat &executor) const = 0;
+		bool beSigned(Bureaucrat &employe);
 
     private:
         const std::string	_name;

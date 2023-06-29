@@ -2,11 +2,11 @@
 
 bool Form::beSigned(Bureaucrat &employe)
 {
-	if (employe.getGrade() <= this->_signGrade)
-		this->_signed = true;
+	if (employe.getGrade() <= _signGrade)
+		_signed = true;
 	else
 		throw GradeTooLowException();
-	return (this->_signed);
+	return (_signed);
 }
 
 std::ostream & operator<<(std::ostream &stream, const Form &src)
@@ -27,9 +27,9 @@ Form::Form(const std::string name, int signGrade, int execGrade) : _name(name)
         throw GradeTooLowException();
     if (signGrade < 1 || execGrade < 1)
         throw GradeTooHighException();
-	this->_signed = false;
-    this->_signGrade = signGrade;
-    this->_execGrade = execGrade;
+	_signed = false;
+    _signGrade = signGrade;
+    _execGrade = execGrade;
 }
 
 Form::Form(const Form &src) : _name(src._name)
@@ -41,8 +41,8 @@ Form::Form(const Form &src) : _name(src._name)
 Form &Form::operator=(const Form &src)
 {
     //std::cout << "Copy assignment orepator called" << std::endl;
-    this->_signGrade = src.getsignGrade();
-	this->_execGrade = src.getexecGrade();
+    _signGrade = src.getsignGrade();
+	_execGrade = src.getexecGrade();
     return (*this);
 }
 
@@ -67,20 +67,20 @@ const char* Form::GradeTooLowException::what(void) const throw()
 
 int Form::getsignGrade(void) const
 {
-    return (this->_signGrade);
+    return (_signGrade);
 }
 
 int Form::getexecGrade(void) const
 {
-    return (this->_execGrade);
+    return (_execGrade);
 }
 
 bool Form::getsigned(void) const
 {
-    return (this->_signed);
+    return (_signed);
 }
 
 const std::string Form::getName(void) const
 {
-    return (this->_name);
+    return (_name);
 }

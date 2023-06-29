@@ -2,6 +2,7 @@
 # define ShrubberyCreationForm_H
 
 # include "Form.hpp"
+# include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {
@@ -12,6 +13,7 @@ class ShrubberyCreationForm : public AForm
 		virtual ~ShrubberyCreationForm(void);
 
 		std::string getTarget(void) const;
+		bool execute(Bureaucrat &executor) const;
 
 	private:
 		std::string _target;

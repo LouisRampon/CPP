@@ -2,12 +2,21 @@
 
 bool AForm::beSigned(Bureaucrat &employe)
 {
-	if (employe.getGrade() <= this->_signGrade)
-		this->_signed = true;
+	if (employe.getGrade() <= _signGrade)
+		_signed = true;
 	else
 		throw GradeTooLowException();
-	return (this->_signed);
+	return (_signed);
 }
+
+// void AForm::execute(Bureaucrat &executor) const
+// {
+//     if ( executor.getGrade() > getexecGrade() )
+//       throw AForm::GradeTooLowException();
+//     else if (!getsigned())
+//       throw AForm::FormNotSigned();
+    
+// }
 
 std::ostream & operator<<(std::ostream &stream, const AForm &src)
 {
@@ -30,9 +39,9 @@ AForm::AForm(const std::string name, int signGrade, int execGrade) : _name(name)
         throw GradeTooLowException();
     if (signGrade < 1 || execGrade < 1)
         throw GradeTooHighException();
-	this->_signed = false;
-    this->_signGrade = signGrade;
-    this->_execGrade = execGrade;
+    _signed = false;
+    _signGrade = signGrade;
+    _execGrade = execGrade;
 }
 
 AForm::AForm(const AForm &src) : _name(src._name)
@@ -44,8 +53,8 @@ AForm::AForm(const AForm &src) : _name(src._name)
 AForm &AForm::operator=(const AForm &src)
 {
     //std::cout << "Copy assignment orepator called" << std::endl;
-    this->_signGrade = src.getsignGrade();
-	this->_execGrade = src.getexecGrade();
+    _signGrade = src.getsignGrade();
+	_execGrade = src.getexecGrade();
     return (*this);
 }
 
@@ -63,27 +72,28 @@ const char* AForm::GradeTooHighException::what(void) const throw()
 
 const char* AForm::GradeTooLowException::what(void) const throw()
 {
-	return ("EXCEPTION : Bureaucrat grade is too low to sign");
+	return ("EXCEPTION : Bureaucrat grade is too low");
 }
+
 
 // Setter && Getter //
 
 int AForm::getsignGrade(void) const
 {
-    return (this->_signGrade);
+    return (_signGrade);
 }
 
 int AForm::getexecGrade(void) const
 {
-    return (this->_execGrade);
+    return (_execGrade);
 }
 
 bool AForm::getsigned(void) const
 {
-    return (this->_signed);
+    return (_signed);
 }
 
 const std::string AForm::getName(void) const
 {
-    return (this->_name);
+    return (_name);
 }

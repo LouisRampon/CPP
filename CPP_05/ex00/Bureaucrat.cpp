@@ -2,16 +2,16 @@
 
 void    Bureaucrat::incrementGrade(void)
 {
-    this->_grade--;
-    if (this->_grade < 1)
+    _grade--;
+    if (_grade < 1)
         throw GradeTooHighException();
     std::cout << "You got a promotion but calm down dude" << std::endl;
 }
 
 void   Bureaucrat::decrementGrade(void)
 {
-    this->_grade++;
-    if (this->_grade > 150)
+    _grade++;
+    if (_grade > 150)
         throw GradeTooLowException();
     std::cout << "You got demoted obviously" << std::endl;
 }
@@ -26,12 +26,12 @@ std::ostream & operator<<(std::ostream &stream, const Bureaucrat &source )
 
 int Bureaucrat::getGrade(void) const
 {
-    return (this->_grade);
+    return (_grade);
 }
 
 const std::string Bureaucrat::getName(void) const
 {
-    return (this->_name);
+    return (_name);
 }
 
 // constructor && destructor //
@@ -43,7 +43,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
         throw GradeTooLowException();
     if (grade < 1)
         throw GradeTooHighException();
-    this->_grade = grade;
+    _grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name)
@@ -55,7 +55,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name)
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &src)
 {
     std::cout << "Copy assignment orepator called" << std::endl;
-    this->_grade = src.getGrade();
+    _grade = src.getGrade();
     return (*this);
 }
 
